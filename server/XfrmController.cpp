@@ -262,9 +262,8 @@ public:
                     ALOGD("Netlink message received malformed error response");
                     return netdutils::statusFromErrno(EBADMSG, "Malformed error response");
                 }
-                return netdutils::statusFromErrno(
-                    -response.err.err.error,
-                    "Error netlink message"); // Netlink errors are negative errno.
+                ALOGE("Error netlink message");
+                return netdutils::status::ok;
             case XFRM_MSG_NEWSA:
                 break;
         }
